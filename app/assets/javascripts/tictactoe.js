@@ -56,12 +56,13 @@ function doTurn(sqr) {
 }
 
 function attachListeners() {
-  $("td").on('click', function() {
-    if(!$.text(this) && !checkWinner()){
+  $('td').on('click', function() {
+    if (!$.text(this) && !checkWinner()) {
       doTurn(this);
     }
   });
-  $("#save").on('click', () => saveGame());
-  $("#previous").on('click', () => showPreviousGame());
-  $("#clear").on('click', () => resetBoard());
+
+  $('#save').on('click', () => saveGame());
+  $('#previous').on('click', () => showPreviousGames());
+  $('#clear').on('click', () => resetBoard());
 }
