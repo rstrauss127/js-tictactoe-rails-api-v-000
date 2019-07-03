@@ -29,16 +29,44 @@ function setMessage(message) {
 }
 
 function checkWinner() {
-  var winner = false;
   var board = {};
+  var winner = false;
 
-  $("td").text((index, square) => board[index] = square);
+  $('td').text((index, square) => board[index] = square);
 
-  winCombos.forEach(function(position) {
-    if((board[position[0]] == board[position[1]] == board[position[2]]) && board[position[0]] != "") {
-      setMessage(`Player ${board[0]} Won!`);
-      winner = true;
+  winCombos.some(function(combo) {
+    if (board[combo[0]] !== "" && board[combo[0]] === board[combo[1]] && board[combo[1]] === board[combo[2]]) {
+      setMessage(`Player ${board[combo[0]]} Won!`);
+      return winner = true;
     }
   });
+
   return winner;
+}
+
+function doTurn(sqr) {
+  updateState(sqr);
+  if(checkWinner() == false) {
+      setMessage(`Tie game.`);
+      turn++;
+  } else {
+      turn = 0;
+      $("td").text("");
+  }
+}
+
+function attachListeners() {
+  $('td').on('click', function() {
+    if (!$.text(this) && !checkWinner()) {
+      doTurn(this);
+    }
+  });
+
+  $('#save').on('click', () => saveGame());
+  $('#previous').on('click', () => showPreviousGames());
+  $('#clear').on('click', () => resetBoard());
+}
+
+function resetBoard() {
+  $("td").text("");
 }
