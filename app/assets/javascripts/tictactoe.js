@@ -47,9 +47,10 @@ function checkWinner() {
 function doTurn(sqr) {
   updateState(sqr);
   if(checkWinner() == false) {
-    setMessage(`Tie game.`);
-    turn++;
+      setMessage(`Tie game.`);
+      turn++;
+  } else {
+      turn = 0;
+      $("td").text("");
   }
-
-
 }
