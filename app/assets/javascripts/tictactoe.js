@@ -44,7 +44,9 @@ function checkWinner() {
   return winner;
 }
 
-function doTurn() {
+function doTurn(sqr) {
+  updateState(sqr);
+  checkWinner();
   turn++;
-  
+
 }
