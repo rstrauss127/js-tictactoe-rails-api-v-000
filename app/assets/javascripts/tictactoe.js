@@ -54,3 +54,11 @@ function doTurn(sqr) {
       $("td").text("");
   }
 }
+
+function attachListeners() {
+  $("td").on('click', function() {
+    if(!$.text(this) && !checkWinner()){
+      doTurn(this);
+    }
+  })
+}
