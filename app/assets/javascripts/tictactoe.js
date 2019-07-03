@@ -29,16 +29,17 @@ function setMessage(message) {
 }
 
 function checkWinner() {
-  var winner = false;
   var board = {};
+  var winner = false;
 
-  $("td").text((index, square) => board[index] = square);
+  $('td').text((index, square) => board[index] = square);
 
-  winCombos.forEach(function(position) {
-    if((board[position[0]] == board[position[1]] == board[position[2]]) && board[position[0]] != "") {
-      setMessage(`Player ${board[0]} Won!`);
-      winner = true;
+  WINNING_COMBOS.some(function(combo) {
+    if (board[combo[0]] !== "" && board[combo[0]] === board[combo[1]] && board[combo[1]] === board[combo[2]]) {
+      setMessage(`Player ${board[combo[0]]} Won!`);
+      return winner = true;
     }
   });
+
   return winner;
 }
