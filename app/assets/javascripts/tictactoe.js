@@ -66,3 +66,7 @@ function attachListeners() {
   $('#previous').on('click', () => showPreviousGames());
   $('#clear').on('click', () => resetBoard());
 }
+
+function resetBoard() {
+  $("td").text("");
+}
